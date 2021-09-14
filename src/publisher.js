@@ -1,4 +1,4 @@
-const { logger } = require('helpers');
+const { logger } = require('@cges/helpers');
 
 let channel = null;
 

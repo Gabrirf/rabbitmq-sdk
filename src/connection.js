@@ -1,5 +1,5 @@
 const amqp = require('amqplib');
-const { logger } = require('helpers');
+const { logger } = require('@cges/helpers');
 
 async function connect(uri) {
   let connection = null;
