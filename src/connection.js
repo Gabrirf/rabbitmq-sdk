@@ -1,16 +1,15 @@
-const amqp = require('amqplib');
+const amqp = require('amqp-connection-manager');
 const { logger } = require('@cges/helpers');
 
-async function connect(uri) {
+async function connect(urls) {
   let connection = null;
   let channel = null;
-  if (!uri) {
-    throw Error('You need a valid rabbitmq uri');
+  if (!urls) {
+    throw Error('You need a valid rabbitmq urls');
   }
   try {
-    connection = await amqp.connect(uri);
+    connection = await amqp.connect(urls);
     channel = await connection.createChannel();
-    logger.info(`🐭 RabbitMQ ready at ${uri.hostname}`);
   } catch (error) {
     if (error.code === 'ECONNREFUSED') {
       logger.error(`Couldn't connect to RabbitMQ at ${error.address}:${error.port}`);

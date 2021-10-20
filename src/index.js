@@ -10,6 +10,9 @@ async function init(config) {
     rabbitmqPublisher.initPublisher(channel);
     rabbitmqConsumer.initConsumer(channel, config.queues);
 
+    connection.on('connect', ({ url }) => {
+      logger.info(`🐭 RabbitMQ ready at ${url.hostname}`);
+    });
     connection.on('error', error => {
       logger.error(`[AMQP] ${error}`);
       connection.close();
