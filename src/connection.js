@@ -9,7 +9,11 @@ async function connect(urls) {
   }
   try {
     connection = await amqp.connect(urls);
-    channel = await connection.createChannel();
+    channel = await connection.createChannel({
+      setup: channel => Promise.all([
+        channel.prefetch(10),
+      ])
+    });
   } catch (error) {
     if (error.code === 'ECONNREFUSED') {
       logger.error(`Couldn't connect to RabbitMQ at ${error.address}:${error.port}`);
