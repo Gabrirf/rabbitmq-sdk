@@ -77,7 +77,7 @@ module.exports = config => {
 > 
 > ```javascript
 > const rabbitmqService = require('@cges/rabbitmq-sdk');
-> const rabbitmqController = require('../controllers/> rabbitmq-controller');
+> const rabbitmqController = require('../controllers/rabbitmq-controller');
 > 
 > module.exports = config => {
 >   const queues = [

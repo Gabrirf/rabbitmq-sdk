@@ -4,7 +4,7 @@ async function connectToQueue(channel, exchange, queue, controller) {
   });
 
   const q = await channel.assertQueue(queue);
-  channel.prefetch(10);
+  
   channel.bindQueue(q.queue, exchange, queue);
 
   channel.consume(q.queue, msg => controller(msg, channel), { noAck: false });
