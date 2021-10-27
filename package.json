@@ -1,6 +1,6 @@
 {
   "name": "@cges/rabbitmq-sdk",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "SDK for standarize RabbitMQ connection, publish and consume",
   "main": "index.js",
   "author": "",
