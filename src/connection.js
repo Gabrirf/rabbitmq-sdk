@@ -1,7 +1,7 @@
 const amqp = require('amqp-connection-manager');
 const { logger } = require('@cges/helpers');
 
-async function connect(urls) {
+async function connect({urls, prefetch = 10}) {
   let connection = null;
   let channel = null;
   if (!urls) {
@@ -11,7 +11,7 @@ async function connect(urls) {
     connection = await amqp.connect(urls);
     channel = await connection.createChannel({
       setup: channel => Promise.all([
-        channel.prefetch(10),
+        channel.prefetch(prefetch),
       ])
     });
   } catch (error) {
