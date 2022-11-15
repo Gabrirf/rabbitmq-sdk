@@ -5,7 +5,7 @@ const rabbitmqPublisher = require('./publisher');
 const rabbitmqConnection = require('./connection');
 
 async function init(config) {
-  const { connection, channel } = await rabbitmqConnection.connect(config.urls);
+  const { connection, channel } = await rabbitmqConnection.connect(config);
   if (connection && channel) {
     rabbitmqPublisher.initPublisher(channel);
     rabbitmqConsumer.initConsumer(channel, config.queues);
